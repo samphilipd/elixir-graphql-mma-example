@@ -1,6 +1,7 @@
 defmodule MmaWeb.Schema.Types do
   use Absinthe.Schema.Notation
   use Absinthe.Ecto, repo: Mma.Repo
+  import_types Absinthe.Type.Custom
 
   object :fighter do
     description """
@@ -20,6 +21,7 @@ defmodule MmaWeb.Schema.Types do
 
   object :fight do
     field :name, :string, description: "The event name"
+    field :date, :date, description: "The date of the event"
   end
 end
 
