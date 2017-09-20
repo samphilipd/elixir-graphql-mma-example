@@ -3,20 +3,23 @@ defmodule MmaWeb.Schema.Types do
   use Absinthe.Ecto, repo: Mma.Repo
 
   object :fighter do
+    description """
+    MMA fighter with vital statistics.
+    """
     field :id, :id
-    field :belts, :integer
+    field :belts, :integer, description: "The number of belts a fighter currently holds"
     field :name, :string
-    field :weight_in_kilos, :float
+    field :weight_in_kilos, :float, deprecate: "This will be replaced by weightInLbs"
     field :fight_results, list_of(:fight_result), resolve: assoc(:fight_results)
   end
 
   object :fight_result do
-    field :result, :string
+    field :result, :string, description: "The result of the fight (Win/Loss/Draw)"
     field :fight, :fight, resolve: assoc(:fight)
   end
 
   object :fight do
-    field :name, :string
+    field :name, :string, description: "The event name"
   end
 end
 
