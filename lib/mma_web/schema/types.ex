@@ -22,6 +22,13 @@ defmodule MmaWeb.Schema.Types do
       end
     end
     field :fight_results, list_of(:fight_result), resolve: assoc(:fight_results)
+    field :expensive_field, :boolean do
+      resolve fn %{name: name}, _, _ ->
+        IO.puts "Resolving something expensive for #{name}"
+        :timer.sleep(2500)
+        {:ok, true}
+      end
+    end
   end
 
   object :fight_result do
