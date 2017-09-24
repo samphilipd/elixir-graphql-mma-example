@@ -3,6 +3,11 @@ defmodule MmaWeb.Schema.Types do
   use Absinthe.Ecto, repo: Mma.Repo
   import_types Absinthe.Type.Custom
 
+  enum :result do
+    value :win, as: "win"
+    value :loss, as: "loss"
+  end
+
   object :fighter do
     description """
     MMA fighter with vital statistics.
@@ -20,7 +25,7 @@ defmodule MmaWeb.Schema.Types do
   end
 
   object :fight_result do
-    field :result, :string, description: "The result of the fight (Win/Loss/Draw)"
+    field :result, :result, description: "The result of the fight (Win/Loss/Draw)"
     field :fight, :fight, resolve: assoc(:fight)
   end
 
