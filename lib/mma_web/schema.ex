@@ -19,4 +19,16 @@ defmodule MmaWeb.Schema do
       end
     end
   end
+
+  mutation do
+    field :create_fighter, type: :fighter do
+      arg :input, :fighter_input
+
+      resolve fn %{input: params}, _ ->
+        %Mma.Fighter{}
+        |> Mma.Fighter.changeset(params)
+        |> Mma.Repo.insert
+      end
+    end
+  end
 end

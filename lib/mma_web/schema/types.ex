@@ -40,5 +40,11 @@ defmodule MmaWeb.Schema.Types do
     field :name, :string, description: "The event name"
     field :date, :date, description: "The date of the event"
   end
+
+  input_object :fighter_input do
+    field :name, non_null(:string)
+    field :belts, :integer
+    field :weight_in_kilos, :float
+  end
 end
 
